@@ -22,6 +22,8 @@ namespace HackerNewsFeed
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+            services.AddMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHackerNewsServices, HackerNewsServices>();
             services.AddSingleton<IGetIdsByCategory, GetIdsByCategory>();
@@ -40,6 +42,11 @@ namespace HackerNewsFeed
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
                 app.UseDeveloperExceptionPage();
             }
             else

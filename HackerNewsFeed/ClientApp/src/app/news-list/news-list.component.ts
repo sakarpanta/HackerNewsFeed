@@ -7,11 +7,12 @@ import { NewsItem } from '../newsitem';
 @Component({
   selector: 'app-news-list',
   templateUrl: './news-list.component.html',
-  styleUrls: ['./news-list.component.css']
+  styleUrls: ['./news-list.component.css'],
+  providers: [ NewsService ]
 })
 export class NewsListComponent implements OnInit {
 
-  newsItems: NewsItem[];
+  newsItems: Int32Array[];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class NewsListComponent implements OnInit {
   }
 
   getAllNewsItems(category: string): void {
-    this.newsService.getNewsItemsForCategory(category)
+    this.newsService.getNewsItemIdsForCategory(category)
       .subscribe(newsItems => this.newsItems = newsItems);
   }
 

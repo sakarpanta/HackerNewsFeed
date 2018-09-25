@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HackerNewsFeed.Libs.Services;
 
-
 namespace HackerNewsFeed.Controllers
 {
     [Route("api/[controller]")]
@@ -22,8 +21,10 @@ namespace HackerNewsFeed.Controllers
         public async Task<IActionResult> Get(string category)
         {
             var result = await _hackerNewsServices.GetNewsItemIdsByCategory(category);
-
             return Ok(result);
         }
+
+
+
     }
 }

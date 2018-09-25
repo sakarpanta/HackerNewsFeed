@@ -26,6 +26,13 @@ export class NewsService {
       );
   }
 
+  getNewsItemIdsForCategory(category: string): Observable<Int32Array[]> {
+    return this.http.get<Int32Array[]>(`${this.API_BASE_URL}/news/${category}`)
+      .pipe(
+        catchError(this.handleError('getNewsItems', []))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
