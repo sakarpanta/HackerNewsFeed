@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using HackerNewsFeed.Libs.HackerNews;
+using HackerNewsFeed.Libs.Services;
 
 namespace HackerNewsFeed
 {
@@ -21,7 +23,9 @@ namespace HackerNewsFeed
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //services.AddSingleton<>
+            services.AddSingleton<IHackerNewsServices, HackerNewsServices>();
+            services.AddSingleton<IGetIdsByCategory, GetIdsByCategory>();
+            services.AddSingleton<IGetNewsItemById, GetNewsItemById>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

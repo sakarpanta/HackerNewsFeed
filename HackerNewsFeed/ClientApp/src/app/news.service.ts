@@ -15,12 +15,12 @@ const httpOptions = {
 @Injectable()
 export class NewsService {
 
-  private APIBaseUrl = environment.apiUrl;
+  private API_BASE_URL = environment.API_BASE_URL;
 
   constructor(private http: HttpClient) { }
 
   getNewsItemsForCategory(category: string): Observable<NewsItem[]> {
-    return this.http.get<NewsItem[]>(`${this.APIBaseUrl}/news/${category}`)
+    return this.http.get<NewsItem[]>(`${this.API_BASE_URL}/news/${category}`)
       .pipe(
         catchError(this.handleError('getNewsItems', []))
       );

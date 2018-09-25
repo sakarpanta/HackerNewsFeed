@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using HackerNewsFeed.Libs.Models;
+using Newtonsoft.Json;
 
 namespace HackerNewsFeed.Libs.HackerNews
 {
@@ -15,6 +16,12 @@ namespace HackerNewsFeed.Libs.HackerNews
             {
                 var url = new Uri($"https://hacker-news.firebaseio.com/v0/{category}stories.json");
                 var response = await client.GetAsync(url);
+
+                using (var content = response.Content)
+                {
+                    string data = await content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<IEnumerable<int>>(data);
+                }
             }
         }
     }
