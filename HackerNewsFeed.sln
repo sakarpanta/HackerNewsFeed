@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNewsFeed", "HackerNewsFeed\HackerNewsFeed.csproj", "{409850D6-714E-4F20-A0F5-DB25431DC85E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNewsFeed.Libs", "HackerNewsFeed.Libs\HackerNewsFeed.Libs.csproj", "{550A616A-450E-44B5-AD0C-F44F1A671BDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{409850D6-714E-4F20-A0F5-DB25431DC85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{409850D6-714E-4F20-A0F5-DB25431DC85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{409850D6-714E-4F20-A0F5-DB25431DC85E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{550A616A-450E-44B5-AD0C-F44F1A671BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{550A616A-450E-44B5-AD0C-F44F1A671BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{550A616A-450E-44B5-AD0C-F44F1A671BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{550A616A-450E-44B5-AD0C-F44F1A671BDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

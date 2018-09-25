@@ -15,12 +15,12 @@ const httpOptions = {
 @Injectable()
 export class NewsService {
 
-  private newsAPIBaseUrl = environment.apiUrl;
+  private APIBaseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
-  getNewsItems(category: string): Observable<NewsItem[]> {
-    return this.http.get<NewsItem[]>(this.newsAPIBaseUrl)
+  getNewsItemsForCategory(category: string): Observable<NewsItem[]> {
+    return this.http.get<NewsItem[]>(`${this.APIBaseUrl}/news/${category}`)
       .pipe(
         catchError(this.handleError('getNewsItems', []))
       );
@@ -28,8 +28,7 @@ export class NewsService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      // Let the application keep running by returning an empty result.
+      console.error(error);
       return of(result as T);
     };
   }

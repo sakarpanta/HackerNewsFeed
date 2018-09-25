@@ -24,7 +24,7 @@ export class NewsListComponent implements OnInit {
   }
 
   getAllNewsItems(category: string): void {
-    this.newsService.getNewsItems(category)
+    this.newsService.getNewsItemsForCategory(category)
       .subscribe(newsItems => this.newsItems = newsItems);
   }
 
