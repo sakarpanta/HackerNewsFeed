@@ -20,8 +20,9 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   getNewsItemsForIds(ids: Number[]): Observable<NewsItem[]> {
-    let idString = JSON.stringify(ids);
-    return this.http.get<NewsItem[]>(`${this.API_BASE_URL}/news/${idString}`)
+    let idsString = ids.join("&id=");
+    console.log(idsString);
+    return this.http.get<NewsItem[]>(`${this.API_BASE_URL}/news/items?id=${idsString}`)
       .pipe(
         catchError(this.handleError('getNewsItems', []))
       );

@@ -1,6 +1,18 @@
 <h2>{{ category | titlecase }} News</h2>
-<ul>
-  <li *ngFor="let newsItem of newsItems">
-  {{newsItem}}
-  </li>
-</ul>
+<div class="list-group"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="10"
+     (scrolled)="onScroll()"
+     *ngIf="newsItems?.length > 0">
+    <a href="{{newsItem.url}}"
+       class="list-group-item list-group-item-action flex-column align-items-start"
+       target="_blank"
+       *ngFor="let newsItem of newsItems">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{newsItem.title}}</h5>
+      </div>
+    </a>
+</div>
+
+

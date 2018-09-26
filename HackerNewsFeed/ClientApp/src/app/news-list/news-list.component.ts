@@ -12,8 +12,11 @@ import { NewsItem } from '../newsitem';
 })
 export class NewsListComponent implements OnInit {
 
-  newsItems: Number[];
+  allItemIds = [];
+  newsItems = [];
   category: string;
+  currentIndex = 0;
+  page_size = 10;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,12 +26,36 @@ export class NewsListComponent implements OnInit {
   ngOnInit() {
     let category = this.route.snapshot.paramMap.get('category');
     this.category = category;
-    this.getAllNewsItems();
+    this.getAllNewsItemIds();
   }
 
-  getAllNewsItems(): void {
+  getAllNewsItemIds(): void {
     this.newsService.getNewsItemIdsForCategory(this.category)
-      .subscribe(newsItems => this.newsItems = newsItems);
+      .subscribe(
+        newsIds => this.loadNewsItems(newsIds)
+      );
+  }
+
+  loadNewsItems(newsIds: Number[]) {
+    this.allItemIds = newsIds;
+    this.getItems();
+  }
+
+  onScroll(): void {
+    this.getItems();
+  }
+
+  getItems(): void {
+    let arr = this.allItemIds.slice(this.currentIndex, this.currentIndex + this.page_size);
+    this.newsService.getNewsItemsForIds(arr)
+      .subscribe(
+        newsItems => this.onSuccess(newsItems)
+      );
+  }
+
+  onSuccess(newsItems: NewsItem[]): void {
+    newsItems.forEach(item => this.newsItems.push(item));
+    this.currentIndex = this.currentIndex + this.page_size + 1;
   }
 
 }
