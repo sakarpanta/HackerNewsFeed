@@ -9,6 +9,6 @@ namespace HackerNewsFeed.Libs.Services
     public interface IHackerNewsServices
     {
         Task<IEnumerable<int>> GetNewsItemIdsByCategory(string category);
-        Task<NewsItemModel> GetNewsItemById(int id);
+        Task<IEnumerable<NewsItemModel>> GetNewsItemsByIds(int[] id);
     }
 }

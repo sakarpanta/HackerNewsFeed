@@ -10,12 +10,12 @@ namespace HackerNewsFeed.Libs.Services
     public class HackerNewsServices : IHackerNewsServices
     {
         private static IGetIdsByCategory _getIdsByCategory;
-        private static IGetNewsItemById _getNewsItemById;
+        private static IGetNewsItemsByIds _getNewsItemsByIds;
 
-        public HackerNewsServices(IGetIdsByCategory getIdsByCategory, IGetNewsItemById getNewsItemById)
+        public HackerNewsServices(IGetIdsByCategory getIdsByCategory, IGetNewsItemsByIds getNewsItemById)
         {
             _getIdsByCategory = getIdsByCategory;
-            _getNewsItemById = getNewsItemById;
+            _getNewsItemsByIds = getNewsItemById;
         }
 
         public async Task<IEnumerable<int>> GetNewsItemIdsByCategory(string category)
@@ -23,9 +23,9 @@ namespace HackerNewsFeed.Libs.Services
             return await _getIdsByCategory.ReturnIdsOfCategory(category);
         }
 
-        public async Task<NewsItemModel> GetNewsItemById(int id)
+        public async Task<IEnumerable<NewsItemModel>> GetNewsItemsByIds(int[] ids)
         {
-            return await _getNewsItemById.ReturnItemDetailById(id);
+            return await _getNewsItemsByIds.ReturnItemDetailsByIds(ids);
         }
     }
 }

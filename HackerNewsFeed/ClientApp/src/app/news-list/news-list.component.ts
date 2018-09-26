@@ -13,6 +13,7 @@ import { NewsItem } from '../newsitem';
 export class NewsListComponent implements OnInit {
 
   newsItems: Int32Array[];
+  category: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,11 +22,12 @@ export class NewsListComponent implements OnInit {
 
   ngOnInit() {
     let category = this.route.snapshot.paramMap.get('category');
-    this.getAllNewsItems(category);
+    this.category = category;
+    this.getAllNewsItems();
   }
 
-  getAllNewsItems(category: string): void {
-    this.newsService.getNewsItemIdsForCategory(category)
+  getAllNewsItems(): void {
+    this.newsService.getNewsItemIdsForCategory(this.category)
       .subscribe(newsItems => this.newsItems = newsItems);
   }
 

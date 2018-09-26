@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-using HackerNewsFeed.Libs.Models;
 using Newtonsoft.Json;
 
 namespace HackerNewsFeed.Libs.HackerNews

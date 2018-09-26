@@ -27,7 +27,7 @@ namespace HackerNewsFeed
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHackerNewsServices, HackerNewsServices>();
             services.AddSingleton<IGetIdsByCategory, GetIdsByCategory>();
-            services.AddSingleton<IGetNewsItemById, GetNewsItemById>();
+            services.AddSingleton<IGetNewsItemsByIds, GetNewsItemsByIds>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

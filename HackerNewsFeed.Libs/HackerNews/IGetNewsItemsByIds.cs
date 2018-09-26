@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HackerNewsFeed.Libs.HackerNews
 {
-    public interface IGetNewsItemById
+    public interface IGetNewsItemsByIds
     {
-        Task<NewsItemModel> ReturnItemDetailById(int id);
+        Task<IEnumerable<NewsItemModel>> ReturnItemDetailsByIds(int[] ids);
     }
 }
