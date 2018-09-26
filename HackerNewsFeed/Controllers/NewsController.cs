@@ -17,17 +17,15 @@ namespace HackerNewsFeed.Controllers
             _hackerNewsServices = hackerNewsServices;
         }
 
-        [HttpGet]
-        [Route("{category}")]
+        [HttpGet("{category}")]
         public async Task<IActionResult> Get(string category)
         {
             var result = await _hackerNewsServices.GetNewsItemIdsByCategory(category);
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("items")]
-        public async Task<IActionResult> Get([FromQuery(Name = "ids")] int[] ids)
+        [HttpGet("items")]
+        public async Task<IActionResult> Get([FromQuery(Name = "id")] int[] ids)
         {
             var result = await _hackerNewsServices.GetNewsItemsByIds(ids);
             return Ok(result);

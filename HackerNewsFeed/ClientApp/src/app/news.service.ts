@@ -19,15 +19,16 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
-  getNewsItemsForCategory(category: string): Observable<NewsItem[]> {
-    return this.http.get<NewsItem[]>(`${this.API_BASE_URL}/news/${category}`)
+  getNewsItemsForIds(ids: Number[]): Observable<NewsItem[]> {
+    let idString = JSON.stringify(ids);
+    return this.http.get<NewsItem[]>(`${this.API_BASE_URL}/news/${idString}`)
       .pipe(
         catchError(this.handleError('getNewsItems', []))
       );
   }
 
-  getNewsItemIdsForCategory(category: string): Observable<Int32Array[]> {
-    return this.http.get<Int32Array[]>(`${this.API_BASE_URL}/news/${category}`)
+  getNewsItemIdsForCategory(category: string): Observable<Number[]> {
+    return this.http.get<Number[]>(`${this.API_BASE_URL}/news/${category}`)
       .pipe(
         catchError(this.handleError('getNewsItems', []))
       );

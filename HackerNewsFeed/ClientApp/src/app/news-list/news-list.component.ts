@@ -12,7 +12,7 @@ import { NewsItem } from '../newsitem';
 })
 export class NewsListComponent implements OnInit {
 
-  newsItems: Int32Array[];
+  newsItems: Number[];
   category: string;
 
   constructor(
