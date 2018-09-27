@@ -17,15 +17,22 @@ export class NewsListComponent implements OnInit {
   category: string;
   currentIndex = 0;
   page_size = 10;
+  title: string;
 
   constructor(
     private route: ActivatedRoute,
-    private newsService: NewsService
-  ) { }
+    private newsService: NewsService,
+    private router: Router
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
     let category = this.route.snapshot.paramMap.get('category');
     this.category = category;
+    this.title = (category == "new" ? "Most Recent" : category);
     this.getAllNewsItemIds();
   }
 

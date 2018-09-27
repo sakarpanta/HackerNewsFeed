@@ -8,8 +8,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NewsListComponent } from './news-list/news-list.component';
 
 @NgModule({
@@ -17,8 +15,6 @@ import { NewsListComponent } from './news-list/news-list.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     NewsListComponent
   ],
   imports: [
@@ -28,12 +24,11 @@ import { NewsListComponent } from './news-list/news-list.component';
     InfiniteScrollModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'news-list/:category', component: NewsListComponent },
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }
