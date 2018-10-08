@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HackerNewsFeed.Libs.Models;
 using HackerNewsFeed.Libs.HackerNews;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace HackerNewsFeed.Libs.Services
 {
@@ -11,11 +12,13 @@ namespace HackerNewsFeed.Libs.Services
     {
         private static IGetIdsByCategory _getIdsByCategory;
         private static IGetNewsItemsByIds _getNewsItemsByIds;
+        private static IMemoryCache _cache;
 
-        public HackerNewsServices(IGetIdsByCategory getIdsByCategory, IGetNewsItemsByIds getNewsItemById)
+        public HackerNewsServices(IGetIdsByCategory getIdsByCategory, IGetNewsItemsByIds getNewsItemById, IMemoryCache cache)
         {
             _getIdsByCategory = getIdsByCategory;
             _getNewsItemsByIds = getNewsItemById;
+            _cache = cache;
         }
 
         public async Task<IEnumerable<int>> GetNewsItemIdsByCategory(string category)
@@ -25,7 +28,7 @@ namespace HackerNewsFeed.Libs.Services
 
         public async Task<IEnumerable<NewsItemModel>> GetNewsItemsByIds(int[] ids)
         {
-            return await _getNewsItemsByIds.ReturnItemDetailsByIds(ids);
+            return await _getNewsItemsByIds.ReturnItemDetailsByIds(ids, _cache);
         }
     }
 }
